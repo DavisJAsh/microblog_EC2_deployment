@@ -1,12 +1,13 @@
 pipeline {
   agent any
     stages {
-        stage ('Build') {
-            steps {
-                sh '''#!/bin/bash
-                <enter your code here>
-                '''
-            }
+        stage('Build') {
+	    steps {
+	        sh 'python3.9 -m venv venv'        
+	        sh 'source venv/bin/activate'     
+	        sh 'pip install -r requirements.txt'  
+	        sh 'python application.py'        
+	    }
         }
         stage ('Test') {
             steps {
@@ -40,11 +41,12 @@ pipeline {
             }
         }
       stage ('Deploy') {
-            steps {
-                sh '''#!/bin/bash
-                <enter your code here>
-                '''
-            }
-        }
+          steps {
+              sh '''#!/bin/bash
+              source venv/bin/activate
+              '''
+          }
+      }
+
     }
 }
