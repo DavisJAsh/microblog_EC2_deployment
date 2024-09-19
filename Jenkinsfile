@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
 	    steps {
-	        sh python3.9 -m venv venv
+	        sh python3.9 -m venv 
 	        sh source /bin/activate    
 	        sh pip install -r requirements.txt 
 		sh microblog.py
