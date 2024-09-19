@@ -3,16 +3,16 @@ pipeline {
     stages {
         stage('Build') {
 	    steps {
-	        sh 'python3.9 -m venv venv'
-	        sh 'source venv/bin/activate'    
-	        sh 'pip install -r requirements.txt' 
-        	sh 'microblog.py' 
+	        sh python3.9 -m venv venv
+	        sh source /bin/activate    
+	        sh pip install -r requirements.txt 
+		sh microblog.py
 	    }
         }
         stage ('Test') {
             steps {
                 sh '''#!/bin/bash
-                source venv/bin/activate
+                source /home/ubuntu/microblog_EC2_deployment/venv/bin/activate
                 py.test ./tests/unit/ --verbose --junit-xml test-reports/results.xml
                 '''
             }
